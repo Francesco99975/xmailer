@@ -1,0 +1,73 @@
+<div style='margin: 2rem;'>
+    <h1 style='padding: 2rem 0; color: {{ color }};'>
+        {{ result }}
+    </h1>
+    <h1>Personal Informations</h1>
+    <ul>
+        <li>First Name: {{covidInfo.firstName}}</li>
+        {{#if covidInfo.hasMiddle}}
+        <li>Middle Name: {{covidInfo.middleName}}</li>
+        {{/if}}
+        <li>Last Name: {{covidInfo.lastName}}</li>
+    </ul>
+    <h1>Symptoms</h1>
+    <ul>
+        <li>Fever or Chills:
+            <span
+                style='color: {{#ifeq covidInfo.symptoms.fever true}}"red"{{#ifeq covidInfo.symptoms.fever false}}"green"{{/ifeq}}; font-weight:bold;'>
+                {{#ifeq covidInfo.symptoms.fever true}}YES{{#ifeq covidInfo.symptoms.fever false}}NO{{/ifeq}}
+            </span>
+        </li>
+        <li>Difficulty breathing or shortness of breath:
+            <span style='color: {{covidInfo.symptoms.breath ? ' red': 'green' }}; font-weight: bold;'>
+                {{covidInfo.symptoms.breath ? 'YES' : 'NO'}}
+            </span>
+        </li>
+        <li>Cough:
+            <span style='color: {{covidInfo.symptoms.cough ? ' red' : 'green' }}; font-weight:bold;'>
+                {{covidInfo.symptoms.cough ? 'YES' : 'NO'}}
+            </span>
+        </li>
+        <li>Sore Throat, trouble swallowing:
+            <span style='color: {{covidInfo.symptoms.throat ? ' red': 'green' }}; font-weight: bold;'>
+                {{covidInfo.symptoms.throat ? 'YES' : 'NO'}}
+            </span>
+        </li>
+        <li>Runny nose / stuffy nose or nasal congestion:
+            <span style='color: {{covidInfo.symptoms.nose ? ' red' : 'green' }}; font-weight: bold;'>
+                {{covidInfo.symptoms.nose ? 'YES' : 'NO'}}
+            </span>
+        </li>
+        <li>Decrease or loss of smell or taste:
+            <span style='color: {{covidInfo.symptoms.taste ? ' red': 'green' }}; font-weight: bold;'>
+                {{covidInfo.symptoms.taste ? 'YES' : 'NO'}}
+            </span>
+        </li>
+        <li>Nausea, vomiting, diarrhea, abdominal pain:
+            <span style='color: {{covidInfo.symptoms.nausea ? ' red' : 'green' }}; font-weight: bold;'>
+                {{covidInfo.symptoms.nausea ? 'YES' : 'NO'}}
+            </span>
+        </li>
+        <li>Not feeling well, extreme tiredness, sore muscles:
+            <span style='color: {{covidInfo.symptoms.tiredness ? ' red' : 'green' }}; font-weight:bold;'>
+                {{covidInfo.symptoms.tiredness ? 'YES' : 'NO'}}
+            </span>
+        </li>
+    </ul>
+    <h1>Travel</h1>
+    <ul>
+        <li>Have you travelled outside Canada in the past 14 days ?:
+            <span style='color: {{covidInfo.travelled ? ' red': 'green' }}; font-weight: bold;'>
+                {{covidInfo.travel ? 'YES' : 'NO'}}
+            </span>
+        </li>
+    </ul>
+    <h1>Contact</h1>
+    <ul>
+        <li>Have you had close contact with a confirmed or probable case of COVID-19 ?:
+            <span style='color: {{covidInfo.contact ? ' red' : 'green' }}; font-weight: bold;'>
+                {{covidInfo.contact ? 'YES' : 'NO'}}
+            </span>
+        </li>
+    </ul>
+</div>
