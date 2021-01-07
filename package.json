@@ -1,0 +1,17 @@
+{
+  "name": "xmailer",
+  "version": "1.0.0",
+  "description": "Server with various routes that send emails for different apps",
+  "main": "./dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francesco Michele Barranca",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
