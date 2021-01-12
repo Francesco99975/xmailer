@@ -33,9 +33,28 @@ const onMailDev = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 
-const onMail = (req: Request, res: Response, next: NextFunction) => {
-    console.log("Mail");
-    return res.json({message: "mail"});
+const onMail = async (req: Request, res: Response, next: NextFunction) => {
+    const covidInfo: CovidForm = req.body as CovidForm;
+
+    try {
+        const emailTemplateSource = await fs.readFile(path.join(__dirname, "../templates/ccq.hbs"), "utf8");
+        const template = handlebars.compile(emailTemplateSource);
+
+        // console.log(template({covidInfo, color: covidInfo.passed ? 'green' : 'red', result: covidInfo.passed ? 'PASSED' : 'FAILED'}));
+
+        const mailOptions = {
+            from: "Cataldi Covid Questionnaire <noreply@ccq.com>",
+            to: process.env.RECEPIENT,
+            subject: "Questionnaire COVID-19",
+            html: template({covidInfo, color: covidInfo.passed ? 'green' : 'red', result: covidInfo.passed ? 'PASSED' : 'FAILED'})
+        }
+
+        await smtpTransport.sendMail(mailOptions);
+    } catch (error) {
+        return res.json({message: "email Error!", error: error.message});
+    }
+
+    return res.json({message: "Email Sent!"});
 };
 
 export { onMail, onMailDev };
