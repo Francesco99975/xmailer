@@ -51,7 +51,7 @@ const onMail = async (req: Request, res: Response, next: NextFunction) => {
 
         await smtpTransport.sendMail(mailOptions);
     } catch (error) {
-        return res.json({message: "email Error!", error: error.message});
+        return res.json({message: "email Errorr!", error: error.message});
     }
 
     return res.json({message: "Email Sent!"});
